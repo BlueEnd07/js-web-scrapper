@@ -13,16 +13,20 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.post("/q", async (req, res) => {
-  const {product} =req.body; 
-  const amazonScrapedData = await amazon_web_scraper(product);
-  const vedantcomputersScrapeData = await vedantcomputers_web_scraper(product);
+  const { product } = req.body;
 
-  const finalScrapeData={
-    amazon:amazonScrapedData,
-    vedantcomputers:vedantcomputersScrapeData
-  };
-  // Send the scraped data back as JSON response
-  res.json(finalScrapeData);
+  const [amazonScrapedData, vedantcomputersScrapeData] = await Promise.all([
+    amazon_web_scraper(product),
+  vedantcomputers_web_scraper(product)
+
+  ])
+
+const finalScrapeData = {
+  amazon: amazonScrapedData,
+  vedantcomputers: vedantcomputersScrapeData
+};
+// Send the scraped data back as JSON response
+res.json(finalScrapeData);
 });
 
 // Start the server
