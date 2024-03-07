@@ -1,5 +1,5 @@
 
-
+const cors = require("cors");
 import bodyParser from "body-parser";
 import express from "express";
 import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
@@ -10,6 +10,7 @@ import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/',async(req,res)=>{
