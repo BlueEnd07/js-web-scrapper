@@ -1,5 +1,5 @@
 
-const cors = require("cors");
+import cors from 'cors';
 import bodyParser from "body-parser";
 import express from "express";
 import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/',async(req,res)=>{
-res.send("hi this is working ")
+res.send("test")
 })
 
 app.post("/q", async (req, res) => {
