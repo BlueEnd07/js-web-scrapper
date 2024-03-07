@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.get('/test',async(req,res)=>{
+app.get('/',async(req,res)=>{
 res.send("hi this is working ")
 })
 
