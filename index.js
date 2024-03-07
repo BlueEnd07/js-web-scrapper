@@ -17,6 +17,13 @@ app.get('/',async(req,res)=>{
 res.send("test")
 })
 
+app.options('/q', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
+
 app.post("/q", async (req, res) => {
   const { product } = req.body;
 
