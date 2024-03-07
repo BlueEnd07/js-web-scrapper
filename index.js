@@ -8,9 +8,13 @@ import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 
 // Create Express app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+
+app.get('/test',async(req,res)=>{
+res.send("hi this is working ")
+})
 
 app.post("/q", async (req, res) => {
   const { product } = req.body;
