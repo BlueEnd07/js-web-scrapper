@@ -1,4 +1,3 @@
-
 import cors from 'cors';
 import bodyParser from "body-parser";
 import express from "express";
@@ -17,13 +16,11 @@ app.get('/',async(req,res)=>{
 res.send("test")
 })
 
-app.options('/q', function (req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.end();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // or your specific origin
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
-
 app.post("/q", async (req, res) => {
   const { product } = req.body;
 
