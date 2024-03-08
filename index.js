@@ -8,6 +8,7 @@ import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 // Create Express app
 const app = express();
 
+app.options("*", cors());
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 
