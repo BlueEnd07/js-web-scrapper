@@ -34,6 +34,10 @@ app.post("/q", async (req, res) => {
   res.json(finalScrapeData);
 });
 
+app.get('/t',async(req,res)=>{
+  res.json(await(amazon_web_scraper(4060)))
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
