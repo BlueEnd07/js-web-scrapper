@@ -35,7 +35,7 @@ app.post("/q", async (req, res) => {
 });
 
 app.get('/t',async(req,res)=>{
-  res.json(await(amazon_web_scraper(4060)))
+  res.send(await(amazon_web_scraper(4060)))
 })
 
 // Start the server
