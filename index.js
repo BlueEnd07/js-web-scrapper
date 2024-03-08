@@ -15,10 +15,6 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
-  res.send("test");
-});
-
-app.post("/q", async (req, res) => {
   const { product } = req.body;
 
   const [amazonScrapedData, vedantcomputersScrapeData] = await Promise.all([
@@ -32,11 +28,9 @@ app.post("/q", async (req, res) => {
   };
   // Send the scraped data back as JSON response
   res.json(finalScrapeData);
+
 });
 
-app.get('/t',async(req,res)=>{
-  res.send(await(amazon_web_scraper(4060)))
-})
 
 // Start the server
 app.listen(port, () => {
