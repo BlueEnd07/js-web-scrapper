@@ -14,8 +14,14 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 
-app.get("/", async (req, res) => {
-  const { product } = req.body;
+app.get('/' , async(req,res)=>{
+  res.json({
+    "test":"working"
+  })
+})
+
+app.get("/r", async (req, res) => {
+  const { product } = req.query;
 
   const [amazonScrapedData, vedantcomputersScrapeData] = await Promise.all([
     amazon_web_scraper(product),
