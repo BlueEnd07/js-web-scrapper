@@ -7,6 +7,14 @@ const vedantcomputers_web_scraper = async (name) => {
     const page = await browser.newPage();
     await page.goto(url);
 
+    // Scroll down the page to trigger lazy loading
+    await page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight);
+    });
+
+    // Wait for a certain amount of time to allow lazy-loaded images to load
+    await page.waitForTimeout(2000); // Adjust the time as needed
+
     // Check if the elements exist before accessing them
     const priceElement = await page.$(".price-new");
     const titleElement = await page.$(".name");
@@ -15,7 +23,7 @@ const vedantcomputers_web_scraper = async (name) => {
 
     // Extract data if elements exist
     const allArticles = {};
-    if (priceElement && titleElement) {
+    if (priceElement && titleElement && imageElement && linkElement) {
       allArticles.source = "vedantcomputers";
       allArticles.image = await page.evaluate(
         (element) => element.src,
@@ -35,7 +43,7 @@ const vedantcomputers_web_scraper = async (name) => {
         titleElement,
       );
     } else {
-      throw new Error("Price or title element not found.");
+      throw new Error("One or more required elements not found.");
     }
 
     // Close browser to free up resources
@@ -50,3 +58,4 @@ const vedantcomputers_web_scraper = async (name) => {
 };
 
 export { vedantcomputers_web_scraper };
+
