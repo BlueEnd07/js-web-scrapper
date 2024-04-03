@@ -4,7 +4,8 @@ import puppeteer from "puppeteer";
 
 const amazon_web_scraper = async (name) => {
   try {
-    const url = `https://www.amazon.in/s?k=${encodeURIComponent(name)}`;
+    console.log("Product Name:", name);
+    const url = `https://www.amazon.in/s?k=${name}`;
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);

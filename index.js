@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
-// import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
+import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 
 // Create Express app
 const app = express();
@@ -14,23 +14,28 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
-  res.json({ "test": "working" });
+  res.json({ test: "working" });
 });
 
-app.get("/scrape", async (req, res) => { 
+app.get("/scrape", async (req, res) => {
   try {
-    const { product } = req.query;
-  
-    const [amazonScrapedData] = await Promise.all([
-      amazon_web_scraper(product),
-      // vedantcomputers_web_scraper(product),
-    ]);
-  
+    
+    const { product } = req.body;
+    // const { product } = req.query;
+    console.log("Product Name from index:", product);
+
+    const dataAmazon = amazon_web_scraper(product)
+    const datavedant = vedantcomputers_web_scraper(product) 
+
+    const [amazonScrapedData,vedantcomputersScrapeData] = await Promise.all([
+      dataAmazon, datavedant
+    ]); 
+
     const finalScrapeData = {
       amazon: amazonScrapedData,
-      // vedantcomputers: vedantcomputersScrapeData,
+      vedantcomputers: vedantcomputersScrapeData,
     };
-  
+
     res.json(finalScrapeData);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -41,4 +46,3 @@ app.get("/scrape", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
-

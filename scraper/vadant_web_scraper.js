@@ -12,9 +12,6 @@ const vedantcomputers_web_scraper = async (name) => {
       window.scrollBy(0, window.innerHeight);
     });
 
-    // Wait for a certain amount of time to allow lazy-loaded images to load
-    await page.waitForTimeout(2000); // Adjust the time as needed
-
     // Check if the elements exist before accessing them
     const priceElement = await page.$(".price-new");
     const titleElement = await page.$(".name");
@@ -23,7 +20,7 @@ const vedantcomputers_web_scraper = async (name) => {
 
     // Extract data if elements exist
     const allArticles = {};
-    if (priceElement && titleElement && imageElement && linkElement) {
+    if (titleElement) {
       allArticles.source = "vedantcomputers";
       allArticles.image = await page.evaluate(
         (element) => element.src,
