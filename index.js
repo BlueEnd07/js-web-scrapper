@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
 import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
+import { md_web_scraper } from "./scraper/md_web_scraper.js";
 
 // Create Express app
 const app = express();
@@ -26,14 +27,17 @@ app.get("/scrape", async (req, res) => {
 
     const dataAmazon = amazon_web_scraper(product)
     const datavedant = vedantcomputers_web_scraper(product) 
+    const datamd = md_web_scraper(product) 
+    
 
-    const [amazonScrapedData,vedantcomputersScrapeData] = await Promise.all([
-      dataAmazon, datavedant
+    const [amazonScrapedData,vedantcomputersScrapeData,mdScrapeData ] = await Promise.all([
+      dataAmazon, datavedant, datamd 
     ]); 
 
     const finalScrapeData = {
       amazon: amazonScrapedData,
       vedantcomputers: vedantcomputersScrapeData,
+      md:mdScrapeData
     };
 
     res.json(finalScrapeData);
