@@ -6,6 +6,7 @@ import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
 import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 import { md_web_scraper } from "./scraper/md_web_scraper.js";
 import{ tlg_web_scraper} from "./scraper/tlg_web_scraper.js";
+import { clarion_web_scraper } from "./scraper/clarion_web_scraper.js";
 
 
 // Create Express app
@@ -26,23 +27,26 @@ app.get("/scrape", async (req, res) => {
     // const { product } = req.query;
     console.log("Product Name from index:", product);
 
-    const dataAmazon = amazon_web_scraper(product);
-    const datavedant = vedantcomputers_web_scraper(product);
-    const datamd = md_web_scraper(product);
-    const datatlg = tlg_web_scraper(product);
-
     const [
       amazonScrapedData,
       vedantcomputersScrapeData,
       mdScrapeData,
       tlgScrapeData,
-    ] = await Promise.all([dataAmazon, datavedant, datamd, datatlg]);
+      // clarionScrapeData
+    ] = await Promise.all([
+      amazon_web_scraper(product),
+      vedantcomputers_web_scraper(product),
+      md_web_scraper(product),
+      tlg_web_scraper(product),
+      // clarion_web_scraper(product)
+    ]);
 
     const finalScrapeData = {
       amazon: amazonScrapedData,
       vedantcomputers: vedantcomputersScrapeData,
       md: mdScrapeData,
       tlg: tlgScrapeData,
+      // clariom: clarionScrapeData
     };
 
     res.json(finalScrapeData);
