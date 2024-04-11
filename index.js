@@ -7,6 +7,7 @@ import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 import { md_web_scraper } from "./scraper/md_web_scraper.js";
 import{ tlg_web_scraper} from "./scraper/tlg_web_scraper.js";
 import { clarion_web_scraper } from "./scraper/clarion_web_scraper.js";
+// import { mdWebScraper } from "./scraper/md_web_scraper.js";
 
 
 // Create Express app
@@ -48,6 +49,8 @@ app.get("/scrape", async (req, res) => {
       tlg: tlgScrapeData,
       // clariom: clarionScrapeData
     };
+
+    // const finalScrapeData=await mdWebScraper(product)
 
     res.json(finalScrapeData);
   } catch (error) {

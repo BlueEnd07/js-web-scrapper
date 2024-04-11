@@ -26,8 +26,7 @@ const tlg_web_scraper = async (name) => {
     await browser.close();
     return allArticles;
   } catch (error) {
-    console.error("Error:", error);
-    throw error; // Re-throw the error to be caught by the caller
+    return [{ source: "Tlg_web"}];
   }
 };
 
