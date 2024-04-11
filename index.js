@@ -5,10 +5,9 @@ import cors from "cors";
 import { amazon_web_scraper } from "./scraper/amazon_web_scraper.js";
 import { vedantcomputers_web_scraper } from "./scraper/vadant_web_scraper.js";
 import { md_web_scraper } from "./scraper/md_web_scraper.js";
-import{ tlg_web_scraper} from "./scraper/tlg_web_scraper.js";
+import { tlg_web_scraper } from "./scraper/tlg_web_scraper.js";
 import { clarion_web_scraper } from "./scraper/clarion_web_scraper.js";
 // import { mdWebScraper } from "./scraper/md_web_scraper.js";
-
 
 // Create Express app
 const app = express();
@@ -19,6 +18,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   res.json({ test: "working" });
 });
 
