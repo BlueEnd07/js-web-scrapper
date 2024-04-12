@@ -51,7 +51,8 @@ app.get("/scrape", async (req, res) => {
     };
 
     // const finalScrapeData=await mdWebScraper(product)
-
+    //
+    console.log(finalScrapeData)
     res.json(finalScrapeData);
   } catch (error) {
     res.status(500).json({ error: error.message });
