@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  res.json({ test: "working" });
+  const amaz= await amazon_web_scraper('4060')
+  res.json(amaz);
 });
 
 app.get("/scrape", async (req, res) => {
