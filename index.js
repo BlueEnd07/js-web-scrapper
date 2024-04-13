@@ -24,14 +24,14 @@ app.get("/", async (req, res) => {
 
 app.get("/scrape", async (req, res) => {
   try {
-    const { product } = req.body;
-    // const { product } = req.query;
+    // const { product } = req.body;
+    const { product } = req.query;
     console.log("Product Name from index:", product);
 
     const [
       amazonScrapedData,
       vedantcomputersScrapeData,
-      mdScrapeData,
+        mdScrapeData,
       tlgScrapeData,
       // clarionScrapeData
     ] = await Promise.all([
