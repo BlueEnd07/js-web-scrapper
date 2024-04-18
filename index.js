@@ -18,8 +18,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
-  const amaz= await amazon_web_scraper('4060')
-  res.json(amaz);
+  res.json({message:"hi is it workin"});
 });
 
 app.get("/scrape", async (req, res) => {
