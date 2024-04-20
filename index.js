@@ -22,10 +22,10 @@ app.get("/", async (req, res) => {
   res.json({message:"hi is it workin"});
 });
 
-app.get("/scrape", async (req, res) => {
+app.post("/scrape", async (req, res) => {
   try {
-    // const { product } = req.body;
-    const { product } = req.query;
+    const { product } = req.body;
+    // const { product } = req.query;
     console.log("Product Name from index:", product);
 
     const [
