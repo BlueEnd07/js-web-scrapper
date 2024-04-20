@@ -1,6 +1,10 @@
 import puppeteer from "puppeteer";
 const md_web_scraper = async (name) => {
+  console.log(`searching for ${name} on md`)
   try {
+
+
+  console.log(`searching for ${name} on md inside try`)
     const url = `https://mdcomputers.in/index.php?search=${name}&submit_search=&route=product%2Fsearch`;
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
