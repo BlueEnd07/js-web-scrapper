@@ -4,10 +4,11 @@ const md_web_scraper = async (name) => {
   try {
     console.log(`searching for ${name} on md inside try`);
     const url = `https://mdcomputers.in/index.php?search=${name}&submit_search=&route=product%2Fsearch`;
+    console.log(` before await url = ${url}`)
     const browser = await puppeteer.launch({ headless: true });
+    console.log('after await')
     const page = await browser.newPage();
     await page.goto(url);
-    console.log(url)
 
     const pageContent = await page.content();
     console.log("Page Content:", pageContent);
