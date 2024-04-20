@@ -41,7 +41,7 @@ const md_web_scraper = async (name) => {
     // Return the scraped data
     return allArticles;
   } catch (error) {
-    console.log('error ')
+    console.log('error from md  ')
     return [{ source: "md computers" }];
   }
 };
