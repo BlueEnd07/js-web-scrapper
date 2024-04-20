@@ -1,14 +1,13 @@
 import puppeteer from "puppeteer";
 const md_web_scraper = async (name) => {
-  console.log(`searching for ${name} on md`)
+  console.log(`searching for ${name} on md`);
   try {
-
-
-  console.log(`searching for ${name} on md inside try`)
+    console.log(`searching for ${name} on md inside try`);
     const url = `https://mdcomputers.in/index.php?search=${name}&submit_search=&route=product%2Fsearch`;
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(url);
+    console.log(url)
 
     const pageContent = await page.content();
     console.log("Page Content:", pageContent);
@@ -45,7 +44,7 @@ const md_web_scraper = async (name) => {
     // Return the scraped data
     return allArticles;
   } catch (error) {
-    console.log('error from md  ')
+    console.log("error from md  ");
     return [{ source: "md computers" }];
   }
 };
