@@ -6,6 +6,9 @@ const md_web_scraper = async (name) => {
     const page = await browser.newPage();
     await page.goto(url);
 
+    const pageContent = await page.content();
+    console.log("Page Content:", pageContent);
+
     // Check if the elements exist before accessing them
     const priceElement = await page.$(".price-new");
     const titleElement = await page.$(".right-block h4 a");
@@ -38,6 +41,7 @@ const md_web_scraper = async (name) => {
     // Return the scraped data
     return allArticles;
   } catch (error) {
+    console.log('error ')
     return [{ source: "md computers" }];
   }
 };
