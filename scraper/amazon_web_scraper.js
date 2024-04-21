@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
-import dotenv from 'dotenv';
-
-dotenv.config();
+// import dotenv from 'dotenv';
+//
+// dotenv.config();
 
 const amazon_web_scraper = async (name) => {
   try {
