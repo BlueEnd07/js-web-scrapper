@@ -1,19 +1,12 @@
-FROM node:20
+FROM ghcr.io/puppeteer/puppeteer:22.3.0
 
-# Set the working directory in the container
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+
 WORKDIR /usr/src/app
 
-# Copy package.json  to the working directory
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
+RUN npm ci
 COPY . .
-
-EXPOSE 3000
-
-# Command to run 
-CMD ["node", "index.js"]
+CMD [ "node", "index.js" ]
 

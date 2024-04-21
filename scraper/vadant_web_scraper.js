@@ -2,7 +2,18 @@ import puppeteer from "puppeteer";
 const vedantcomputers_web_scraper = async (name) => {
   try {
     const url = `https://www.vedantcomputers.com/index.php?route=product/search&search=${encodeURIComponent(name)}`;
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
     const page = await browser.newPage();
     await page.goto(url);
 

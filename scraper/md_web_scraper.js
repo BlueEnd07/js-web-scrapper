@@ -1,21 +1,22 @@
 import puppeteer from "puppeteer";
 const md_web_scraper = async (name) => {
-  console.log(`searching for ${name} on md`);
   try {
-    console.log(`searching for ${name} on md inside try`);
-
     const url = `https://mdcomputers.in/index.php?search=${name}&submit_search=&route=product%2Fsearch`;
-    console.log(url);
-    console.log(`searching for ${name} on md inside try after url`);
-
-    const browser = await puppeteer.launch({ headless: true });
-
-    console.log(`searching for ${name} on md inside try after browser`);
-
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
     const page = await browser.newPage();
     await page.goto(url);
 
-    console.log("Page Content:");
 
     // Check if the elements exist before accessing them
     const priceElement = await page.$(".price-new");
