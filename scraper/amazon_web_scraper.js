@@ -1,4 +1,8 @@
 import puppeteer from "puppeteer";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const amazon_web_scraper = async (name) => {
   try {
     const url = `https://www.amazon.in/s?k=${name}`;
