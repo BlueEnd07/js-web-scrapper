@@ -3,12 +3,10 @@ const vedantcomputers_web_scraper = async (name) => {
   try {
     const url = `https://www.vedantcomputers.com/index.php?route=product/search&search=${encodeURIComponent(name)}`;
     const browser = await puppeteer.launch({
-      // args: [
-      //   "--disable-setuid-sandbox",
-      //   "--no-sandbox",
-      //   "--single-process",
-      //   "--no-zygote",
-      // ],
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+      ],
       executablePath:
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
